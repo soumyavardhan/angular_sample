@@ -35,16 +35,16 @@
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
-        function Bug(defaults){
+        bugTrackerApp.value("Bug", function Bug(defaults){
             this.name = defaults.name;
             this.isClosed = defaults.isClosed;
 
             this.toggle = function(){
                 this.isClosed = !this.isClosed;
             };
-        }
+        });
 
-        bugTrackerApp.controller("bugsController", function($scope){
+        bugTrackerApp.controller("bugsController", function($scope, Bug){
             $scope.bugs = [
                 new Bug({name: "Server Communication Failure", isClosed: false}),
                 new Bug({name: "Stack Overflow Error", isClosed: false}),
