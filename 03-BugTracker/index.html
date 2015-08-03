@@ -37,16 +37,16 @@
 
         bugTrackerApp.controller("bugsController", function($scope){
             $scope.bugs = [
-                "Server Communication Failure",
-                "Stack Overflow Error",
-                "Object Reference Not Found",
-                "User Authentication Failure"
+                {name: "Server Communication Failure", isClosed: false},
+                {name: "Stack Overflow Error", isClosed: false},
+                {name: "Object Reference Not Found", isClosed: false},
+                {name: "User Authentication Failure", isClosed: false}
             ];
 
             $scope.newBugName = "";
 
             $scope.addbug = function(){
-                $scope.bugs.push($scope.newBugName);
+                $scope.bugs.push({name: $scope.newBugName, isClosed: false});
             };
         });
 
@@ -74,7 +74,7 @@
         <input type="button" value="Add Bug" ng-click="addbug()">
         <input type="button" value="Remove Closed">
         <ol>
-            <li ng-repeat="bug in bugs">{{bug}}</li>
+            <li ng-repeat="bug in bugs">{{bug.name}}</li>
         </ol>
     </div>
 </div>
