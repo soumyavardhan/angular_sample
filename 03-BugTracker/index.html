@@ -52,11 +52,11 @@
             $scope.toggle = function(bug){
                 bug.isClosed = !bug.isClosed;
             };
-        });
 
-        $scope.setSelectedBug = function(bug){
-            $scope.selectedBug = bug;
-        };
+            $scope.setSelectedBug = function(bug){
+                $scope.selectedBug = bug;
+            };
+        });
 
     </script>
 </head>
@@ -82,8 +82,8 @@
         <input type="button" value="Add Bug" ng-click="addbug()">
         <input type="button" value="Remove Closed">
         <ol>
-            <li ng-repeat="bug in bugs">
-                {{bug.name}}
+            <li ng-repeat="bug in bugs" ng-click="toggle(bug)">
+                {{bug}}
                 <input type="button" value="select" ng-click="setSelectedBug(bug)">
             </li>
         </ol>
