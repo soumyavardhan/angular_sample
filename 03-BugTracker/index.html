@@ -36,7 +36,12 @@
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
         bugTrackerApp.controller("bugsController", function($scope){
-            $scope.dummyValue = 'something';
+            $scope.bugs = [
+                "Server Communication Failure",
+                "Stack Overflow Error",
+                "Onject Reference Not Found",
+                "User Authentication Failure"
+            ];
         });
 
     </script>
@@ -47,7 +52,7 @@
     <div class="stats">
         <span class="closed">3</span>
         /
-        <span>10</span>
+        <span ng-bind="bugs.length"></span>
     </div>
     <div class="search">
         <label for="">Search :</label>
