@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bug Tracker</title>
+    <script>
+    /*
+    1. List the bugs
+    2. Add a new bug
+    3. Toggle the closed status of the bug
+    4. Remove closed bugs
+    5. Display statistics
+    6. Search for bugs
+    7. Sort the bugs
+    8. Improvise the bug display (name)
+    9. Display the created time stamp of the bug
+    10. Persist the bugs in the server
+    */
+    </script>
+    <style>
+        .stats{
+            font-weight: bold;
+            font-size: 12pt;
+        }
+        .closed {
+            color : red;
+            text-decoration: line-through;
+            font-style: italic;
+        }
+        div {
+            margin-bottom: 10px;
+        }
+    </style>
+    <script src="angular.js"></script>
+    <script>
+        var bugTrackerApp = angular.module("bugTrackerApp", []);
+
+        bugTrackerApp.controller("bugsController", function($scope){
+            $scope.dummyValue = 'something';
+        });
+
+    </script>
+</head>
+<body ng-app="bugTrackerApp"><!--angular starts compilation from here-->
+<h1>Bug Tracker</h1>
+<div class="content" ng-controller="bugsController">
+    <div class="stats">
+        <span class="closed">3</span>
+        /
+        <span>10</span>
+    </div>
+    <div class="search">
+        <label for="">Search :</label>
+        <input type="text" name="" id="">
+    </div>
+    <div class="order">
+        <label for="">Sort :</label>
+        <input type="text" name="" id="">
+    </div>
+    <div class="list">
+        <label for="">Bug :</label>
+        <input type="text" name="" id="" ng-model="dummyValue">
+        <input type="button" value="Add Bug">
+        <input type="button" value="Remove Closed">
+        <ol>
+            <li>Bug - 1</li>
+            <li class="closed">Bug - 2</li>
+            <li>Bug - 3</li>
+        </ol>
+    </div>
+</div>
+</body>
+</html>
