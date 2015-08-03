@@ -35,22 +35,32 @@
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
+        function Bug(defaults){
+            this.name = defaults.name;
+            this.isClosed = defaults.isClosed;
+
+            this.toggle = function(){
+                this.isClosed = !this.isClosed;
+            };
+        }
+
         bugTrackerApp.controller("bugsController", function($scope){
             $scope.bugs = [
-                {name: "Server Communication Failure", isClosed: false},
-                {name: "Stack Overflow Error", isClosed: false},
-                {name: "Object Reference Not Found", isClosed: false},
-                {name: "User Authentication Failure", isClosed: false}
+                new Bug({name: "Server Communication Failure", isClosed: false}),
+                new Bug({name: "Stack Overflow Error", isClosed: false}),
+                new Bug({name: "Object Reference Not Found", isClosed: false}),
+                new Bug({name: "User Authentication Failure", isClosed: false})
             ];
 
             $scope.newBugName = "";
 
             $scope.addbug = function(){
-                $scope.bugs.push({name: $scope.newBugName, isClosed: false});
+                var nBug = new Bug({name: $scope.newBugName, isClosed: false});
+                $scope.bugs.push(nBug);
             };
 
             $scope.toggle = function(bug){
-                bug.isClosed = !bug.isClosed;
+                bug.toggle();
             };
 
             $scope.setSelectedBug = function(bug){
@@ -100,11 +110,11 @@
             <li ng-repeat="bug in bugs" ng-class="{closed: bug.isClosed}">
                 {{bug}}
                 <input type="button" value="Toggle Bug Status" ng-click="toggle(bug)">
-                <input type="button" value="select" ng-click="setSelectedBug(bug)">
+                <!--<input type="button" value="select" ng-click="setSelectedBug(bug)">-->
             </li>
         </ol>
         <br/><br/>
-        <div>The selected bug is {{selectedBug}}</div>
+        <!--<div>The selected bug is {{selectedBug}}</div>-->
     </div>
 </div>
 </body>
