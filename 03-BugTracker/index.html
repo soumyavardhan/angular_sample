@@ -42,6 +42,10 @@
             this.toggle = function(){
                 this.isClosed = !this.isClosed;
             };
+
+            Bug.prototype.toggle = function() {  //creating a function for the base class of Bug so that it is available in all objects of Bug (more efficient)
+                this.isClosed = defaults.isClosed;
+            };
         });
 
         bugTrackerApp.controller("bugsController", function($scope, Bug){
