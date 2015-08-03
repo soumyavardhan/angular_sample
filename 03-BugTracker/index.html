@@ -50,6 +50,8 @@
             };
         });
 
+        $scope.selectedBug = null;
+
     </script>
 </head>
 <body ng-app="bugTrackerApp"><!--angular starts compilation from here-->
@@ -74,8 +76,13 @@
         <input type="button" value="Add Bug" ng-click="addbug()">
         <input type="button" value="Remove Closed">
         <ol>
-            <li ng-repeat="bug in bugs">{{bug.name}}</li>
+            <li ng-repeat="bug in bugs">
+                {{bug.name}}
+                <input type="button" value="select" ng-click="selectedBug = bug">
+            </li>
         </ol>
+        <br/><br/>
+        <div>The selected bug is {{selectedBug}}</div>
     </div>
 </div>
 </body>
