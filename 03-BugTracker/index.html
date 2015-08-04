@@ -35,18 +35,23 @@
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
-        bugTrackerApp.value("Bug", function Bug(defaults){
-            this.name = defaults.name;
-            this.isClosed = defaults.isClosed;
-
-            this.toggle = function(){
-                this.isClosed = !this.isClosed;
-            };
-
-            Bug.prototype.toggle = function() {  //creating a function for the base class of Bug so that it is available in all objects of Bug (more efficient)
+        function getBugClass(){ 
+            return function Bug(defaults){
+                this.name = defaults.name;
                 this.isClosed = defaults.isClosed;
+
+                this.toggle = function(){
+                    this.isClosed = !this.isClosed;
+                };
+
+                Bug.prototype.toggle = function() {  //creating a function for the base class of Bug so that it is available in all objects of Bug (more efficient)
+                    this.isClosed = defaults.isClosed;
+                };
             };
-        });
+        }
+
+        bugTrackerApp.value("Bug", getBugClass());
+
 
         bugTrackerApp.controller("bugsController", function($scope, Bug){
             $scope.bugs = [
