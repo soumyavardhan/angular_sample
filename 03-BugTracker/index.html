@@ -32,6 +32,7 @@
         }
     </style>
     <script src="angular.js"></script>
+    <script src="moment.js"></script>
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
@@ -97,6 +98,12 @@
             }
         });
 
+        bugTrackerApp.filter("toMoment", function(){
+            return function(data){
+                return moment(data).fromNow();
+            }
+        });
+
     </script>
 </head>
 <body ng-app="bugTrackerApp"><!--angular starts compilation from here-->
@@ -155,7 +162,7 @@
                     {{bug.name}}
                 </div>
                 <div class="timeStamp">
-                    {{bug.createdAt}}
+                    {{bug.createdAt | toMoment}}
                 </div>
             </li>
         </ol>
