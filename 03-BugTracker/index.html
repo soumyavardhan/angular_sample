@@ -35,7 +35,7 @@
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
-        bugTrackerApp.factory("Bug", function(){ 
+        bugTrackerApp.factory("Bug", function getBugClass($http){ 
             return function Bug(defaults){
                 this.name = defaults.name;
                 this.isClosed = defaults.isClosed;
