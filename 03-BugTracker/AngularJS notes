@@ -60,3 +60,6 @@ $resource (abstracts API calls to server(get, post, put, delete))
 Two phases:
 Config phase - only Provider and constant are available during this phase
 Run phase - Everything else is available
+
+
+Routing -> angular-route.js
