@@ -53,3 +53,10 @@ Query By Example - using a product to search among products (Filter allows doing
 
 Server Communication:
 Promise Object - irrespective of when the async operation is completed, I will be able to get the result from an object that I need to subscribe to. This object is called the Promise object. Promise object holds the result of the async operation and I can subscribe to it even after the event is completed and still get the result.
+
+
+$resource (abstracts API calls to server(get, post, put, delete))
+
+Two phases:
+Config phase - only Provider and constant are available during this phase
+Run phase - Everything else is available
