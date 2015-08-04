@@ -35,7 +35,7 @@
     <script>
         var bugTrackerApp = angular.module("bugTrackerApp", []);
 
-        function getBugClass(){ 
+        bugTrackerApp.factory("Bug", function(){ 
             return function Bug(defaults){
                 this.name = defaults.name;
                 this.isClosed = defaults.isClosed;
@@ -48,9 +48,7 @@
                     this.isClosed = defaults.isClosed;
                 };
             };
-        }
-
-        bugTrackerApp.value("Bug", getBugClass());
+        });
 
 
         bugTrackerApp.controller("bugsController", function($scope, Bug){
