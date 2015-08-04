@@ -71,13 +71,14 @@
 
         bugTrackerApp.factory("bugService", function($http, Bug){
             return {
-                getAll : function($scope){
+                getAll : function(onResult){
                     var promise = $http.get("http://localhost:3000/bugs");
                     promise.then(function(response){
                         console.log(response.data);
-                        $scope.bugs = response.data.map(function(bugData){
+                        var result = response.data.map(function(bugData){
                             return new Bug(bugData);
                         });
+                        onResult(result);
                     });
                 }
             }
@@ -86,7 +87,9 @@
         bugTrackerApp.controller("bugsController", function($scope, Bug, $http, bugService){
             $scope.bugs = []; 
 
-            bugService.getAll($scope);
+            bugService.getAll(function(bugs){
+                $scope.bugs = bugs;
+            });
 
             $scope.newBugName = "";
 
