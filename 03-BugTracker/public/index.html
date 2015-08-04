@@ -69,16 +69,24 @@
         });
 
 
-        bugTrackerApp.controller("bugsController", function($scope, Bug, $http){
+        bugTrackerApp.factory("bugService", function($http, Bug){
+            return {
+                getAll : function($scope){
+                    var promise = $http.get("http://localhost:3000/bugs");
+                    promise.then(function(response){
+                        console.log(response.data);
+                        $scope.bugs = response.data.map(function(bugData){
+                            return new Bug(bugData);
+                        });
+                    });
+                }
+            }
+        });
+
+        bugTrackerApp.controller("bugsController", function($scope, Bug, $http, bugService){
             $scope.bugs = []; 
 
-            var promise = $http.get("http://localhost:3000/bugs");
-            promise.then(function(response){
-                console.log(response.data);
-                $scope.bugs = response.data.map(function(bugData){
-                    return new Bug(bugData);
-                });
-            });
+            bugService.getAll($scope);
 
             $scope.newBugName = "";
 
