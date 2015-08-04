@@ -98,7 +98,9 @@
             }
         });
 
-        bugTrackerApp.filter("toMoment", function(){
+        bugTrackerApp.value("moment", moment);
+
+        bugTrackerApp.filter("toMoment", function(moment){
             return function(data){
                 return moment(data).fromNow();
             }
