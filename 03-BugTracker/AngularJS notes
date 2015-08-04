@@ -1,0 +1,55 @@
+AngularJS notes
+
+sudo npm install http-server -g
+sudo npm install -g json-server
+
+
+view should not know anything about the model apart from the necessary.
+A model can have multiple views
+all views must be synced using events on view as well as model change (Angular does this be itself)
+
+
+Angular JS
+Angular expects the user to change models with the knowledge of the score object
+
+to let the scope object know, we have a function called $apply() #helps keep track of changes to view in the model
+to track an object we have a function called $watch() #helps keep track of changes in the model in the view
+
+angular.bootstrap(document.body, [])
+var scope = angular.element(document.body).scope();
+
+scope.name = ''
+scope.$watch('name', function() {
+	
+})
+
+scope.$apply(function(){
+	make changes here
+})
+
+Building blocks of Angular JS
+1.) Scope
+2.) Module
+3.) Controller
+4.) Directive - connect scope with DOM
+5.) Filter - Transforms data for presentation purposes
+6.) Factory
+7.) Service
+8.) Value
+9.) Constant
+10.) Providers
+
+
+Nested scopes to avoid name collisions and to maintain data access across scopes
+
+on all divs that need a scope, we will use a directive ng-controller
+every scope object has a function called $new that creates a new scope with the first scope as a parent
+<div ng-controller="function"> #this function should be present in the module
+
+
+Query By Example - using a product to search among products (Filter allows doing this, helps when we want to search only on name and not on fixed status)
+
+
+
+Server Communication:
+Promise Object - irrespective of when the async operation is completed, I will be able to get the result from an object that I need to subscribe to. This object is called the Promise object. Promise object holds the result of the async operation and I can subscribe to it even after the event is completed and still get the result.
